@@ -1,38 +1,187 @@
-.App {
-  text-align: center;
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212; 
+  color: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  color: #ffffff;
+  padding: 15px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto; 
+}
+
+.navbar {
+  display: flex; 
+  margin-left: auto; 
+  padding-right: 30px; 
+  gap: 20px; 
+}
+
+.navbar a {
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #333333;
+}
+
+.movies-section {
+  margin: 80px 30px 30px 30px; 
+  padding: 20px;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movies-section h2 {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  width: 100%;
+  height: 200px;
+  background-color: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card:hover::after {
+  opacity: 1;
+}
+
+.movie-card span {
+  color: #ffffff;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: calc(100vh - 80px); 
+  padding: 20px;
+  background-color: #1f1f1f;
+  margin-top: 80px; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.App-link {
-  color: #61dafb;
+.login-form input {
+  margin: 10px 0;
+  padding: 15px;
+  width: 300px;
+  border-radius: 30px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  font-size: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.login-form input::placeholder {
+  color: #aaaaaa;
+}
+
+.forgot-password {
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.forgot-password:hover {
+  color: #ffffff;
+}
+
+.login-form .login-button {
+  margin-top: 10px;
+  padding: 15px 30px;
+  width: 300px;
+  border-radius: 30px;
+  border: none;
+  background-color: #4caf50;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-form .login-button:hover {
+  background-color: #43a047;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    gap: 10px; 
+    padding-right: 10px; 
   }
-  to {
-    transform: rotate(360deg);
+
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .login-form input,
+  .login-form .login-button {
+    width: 100%;
   }
 }
