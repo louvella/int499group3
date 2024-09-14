@@ -1,12 +1,13 @@
+// LoginPage.js
 import React from 'react';
 import Header from './Header';
 import LoginForm from './LoginForm';
 
-const LoginPage = () => {
+const LoginPage = ({ onLogin }) => { // Accept onLogin as a prop
   return (
     <div className="login-page">
       <Header />
-      <LoginForm />
+      <LoginForm onLogin={onLogin} /> {/* Pass onLogin down to LoginForm */}
     </div>
   );
 };
