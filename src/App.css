@@ -96,23 +96,30 @@ a {
 
 .navbar a {
   color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
   transition: background-color 0.3s;
 }
 
 .navbar a:hover {
-  background-color: #333333;
+  background-color: #5e5e5e;
 }
 
-.navbar button {
+.navbar .button {
   color: #ffffff;
   background: none;
   border: none;
   cursor: pointer;
   background-color: #2a2a2a;
-
+  margin-bottom: 10px;
   margin-left: 10px;
+  padding: 10px 20px; /* Optional: Add padding for better appearance */
+  border-radius: 8px; /* Rounded edges */
+  transition: background-color 0.3s, transform 0.2s; /* Optional: Smooth transition on hover */
+}
+
+.navbar .button:hover {
+  background-color: #5e5e5e;
 }
 
 .movies-section {
@@ -146,6 +153,17 @@ a {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+}
+.movie-card img {
+  width: 30px;
+  height: 30px;
+  background-color: #1f1f1f;
+  padding: none;
+}
+
+.movie-card button {
+  background-color: #1f1f1f;
+  padding: 1px;
 }
 
 .movie-card:hover {
@@ -191,6 +209,24 @@ a {
   color: #aaaaaa;
 }
 
+.login-form .button {
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 10px 20px; /* Optional: Add padding for better appearance */
+  border-radius: 8px; /* Rounded edges */
+  transition: background-color 0.3s, transform 0.2s; /* Optional: Smooth transition on hover */
+}
+
+.login-form .button:hover {
+  background-color: #5e5e5e;
+  transform: scale(1.05);
+}
+
 .forgot-password {
   color: #aaaaaa;
   font-size: 0.9rem;
@@ -204,25 +240,6 @@ a {
 .forgot-password:hover {
   color: #ffffff;
 }
-
-.login-form .login-button {
-  margin-top: 10px;
-  padding: 15px 30px;
-  width: 300px;
-  border-radius: 30px;
-  border: none;
-  background-color: #4caf50;
-  color: #ffffff;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.login-form .login-button:hover {
-  background-color: #43a047;
-  transform: scale(1.05);
-}
-
 
 @media (max-width: 768px) {
   .navbar {
@@ -240,7 +257,7 @@ a {
   }
 }
 
-.cart-button {
+.cart-page .button {
   color: #ffffff;
   background: none;
   border: none;
@@ -248,11 +265,35 @@ a {
   background-color: #2a2a2a;
   margin-bottom: 10px;
   margin-left: 10px;
+  padding: 10px 20px; /* Optional: Add padding for better appearance */
+  border-radius: 8px; /* Rounded edges */
+  transition: background-color 0.3s, transform 0.2s; /* Optional: Smooth transition on hover */
+}
+
+.cart-page .button:hover{
+  color: #ffffff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: #5e5e5e;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .cart-button img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
+  background-color: #1f1f1f;
+  padding: none;
+
+}
+
+.cart-button .button {
+  background-color: #1f1f1f;
+  padding: none;
+  
+
+
 }
 
 .cart-page {
@@ -277,5 +318,7 @@ a {
 }
 
 .cart-submenu a:hover {
-  background-color: #333333;
+  background-color: #5e5e5e;
 }
+
+

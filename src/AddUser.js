@@ -1,4 +1,3 @@
-// AddUser.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -24,6 +23,7 @@ const AddUser = () => {
       return;
     }
 
+    // passwords are stored hashed - had to install bcrypt 
     const hashedPassword = bcrypt.hashSync(password, 10);
     const newUser = { username, password: hashedPassword };
     users.push(newUser);
@@ -50,7 +50,7 @@ const AddUser = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleAddUser}>Add User</button>
+      <button className="button" onClick={handleAddUser}>Add User</button>
       <p>{message}</p>
       <Link to="/login">Back to Login</Link>
     </div>

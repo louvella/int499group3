@@ -1,13 +1,15 @@
-// LoginPage.js
 import React from 'react';
+// imports the header component as the page header
 import Header from './Header';
+// imports the LoginForm component for handling user login
 import LoginForm from './LoginForm';
 
-const LoginPage = ({ onLogin }) => { // Accept onLogin as a prop
+// loginPage component that represents the login page
+const LoginPage = ({ onLogin }) => { 
   return (
     <div className="login-page">
       <Header />
-      <LoginForm onLogin={onLogin} /> {/* Pass onLogin down to LoginForm */}
+      <LoginForm onLogin={onLogin} /> 
     </div>
   );
 };
