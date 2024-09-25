@@ -98,6 +98,8 @@ a {
   color: #ffffff;
   padding: 10px 20px;
   border-radius: 8px;
+  margin-bottom: 10px;
+  margin-left: 10px;
   transition: background-color 0.3s;
 }
 
@@ -181,7 +183,7 @@ a {
   z-index: 1;
 }
 
-.login-form {
+.credit-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -194,7 +196,7 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.login-form input {
+.credit-card input {
   margin: 10px 0;
   padding: 15px;
   width: 300px;
@@ -205,11 +207,11 @@ a {
   font-size: 1rem;
 }
 
-.login-form input::placeholder {
+.credit-card input::placeholder {
   color: #aaaaaa;
 }
 
-.login-form .button {
+.credit-card .button {
   color: #ffffff;
   background: none;
   border: none;
@@ -222,7 +224,7 @@ a {
   transition: background-color 0.3s, transform 0.2s; /* Optional: Smooth transition on hover */
 }
 
-.login-form .button:hover {
+.credit-card .button:hover {
   background-color: #5e5e5e;
   transform: scale(1.05);
 }

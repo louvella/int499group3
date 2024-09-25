@@ -5,7 +5,9 @@ import cartIcon from './assets/cart.png';
 import removeIcon from './assets/remove.png'; 
 
 const MoviesList = ({ title, onAddToCart, onRemoveFromCart, cart }) => {
+  
   return (
+    
     <div className="movies-section">
       <h2>{title}</h2>
       <div className="movies-grid">

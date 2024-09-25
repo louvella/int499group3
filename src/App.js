@@ -1,12 +1,12 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './HomePage';
-import LoginPage from './LoginPage';
 import CartPage from './CartPage';
-import AddUser from './AddUser';
+import CreditCardForm from './CreditCardForm';
 import Header from './Header'; // Import the shared Header component
 import './App.css';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import GoogleLogin from './GoogleLogin';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -14,12 +14,32 @@ const App = () => {
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    //const storedCreditCardInfo = JSON.parse(localStorage.getItem('creditCardInfo')) || null;
+    const storedAuthStatus = JSON.parse(localStorage.getItem('isAuthenticated')) || false;
+    
     setCart(storedCart);
+    setIsAuthenticated(storedAuthStatus); // Load auth status from localStorage
   }, []);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', JSON.stringify(true)); // Store auth status
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('creditCardInfo');
+  };
+
+  const handleCreditCardSave = (creditCardInfo) => {
+    // This function is passed to CreditCardForm as a prop
+    localStorage.setItem('creditCardInfo', JSON.stringify(creditCardInfo));
+  };
 
   // Calculate price based on movie number
   const calculatePrice = (movie) => {
@@ -46,56 +66,64 @@ const App = () => {
     setCart([]);
   };
 
-  // Handle login
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
-  // Handle logout
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('isAuthenticated'); // Clear authentication on logout
-  };
-
   return (
-    <Router>
-      <div>
-        {/* Include the shared header component with appropriate props */}
-        <Header
-          cartLength={cart.length}
-          isAuthenticated={isAuthenticated}
-          onLogout={handleLogout}
-        />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                onAddToCart={handleAddToCart}
-                onRemoveFromCart={handleRemoveFromCart}
-                cart={cart}
-              />
-            }
+    <GoogleOAuthProvider clientId="76771103106-4kgp7eu5vnhnrvqp1ig5pqktjm7j3dsa.apps.googleusercontent.com">
+      <Router>
+        <div>
+          {/* Include the shared header component with appropriate props */}
+          <Header
+            cartLength={cart.length}
+            isAuthenticated={isAuthenticated}
+            onLogout={handleLogout}
           />
-          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-          <Route path="/add-user" element={<AddUser />} />
-          <Route
-            path="/cart/*"
-            element={
-              isAuthenticated ? (
-                <CartPage
-                  cart={cart}
-                  onRemoveFromCart={handleRemoveFromCart}
-                  onClearCart={handleClearCart}
-                />
-              ) : (
-                <Navigate to="/login" /> // Redirect unauthenticated users to login
-              )
-            }
-          />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            {/* If not authenticated, redirect to login page */}
+            <Route
+              path="/"
+              element={
+                isAuthenticated ? (
+                  <HomePage
+                    onAddToCart={handleAddToCart}
+                    onRemoveFromCart={handleRemoveFromCart}
+                    cart={cart}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={<GoogleLogin onLoginSuccess={handleLoginSuccess} />}
+            />
+            <Route
+              path="/credit-card"
+              element={
+                isAuthenticated ? (
+                  <CreditCardForm onSave={handleCreditCardSave} /> // Pass the function here
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/cart/*"
+              element={
+                isAuthenticated ? (
+                  <CartPage
+                    cart={cart}
+                    onRemoveFromCart={handleRemoveFromCart}
+                    onClearCart={handleClearCart}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    </GoogleOAuthProvider>
   );
 };
 
