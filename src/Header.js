@@ -6,13 +6,13 @@ const Header = ({ cartLength, isAuthenticated, onLogout }) => {
   const navigate = useNavigate();
 
   const handleCartClick = () => {
-    navigate('/login');
+    navigate('/cart');
     window.dispatchEvent(new Event('storage'));
   };
   
   const handleLoginClick = () => {
-    navigate('/cart');
-    window.dispatchEvent(new Event('storage'));
+    window.location.href = '/login';
+    window.dispatchEvent(new Event('login'));
   };
 
   return (

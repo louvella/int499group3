@@ -25,6 +25,17 @@ a {
   z-index: 1000;
 }
 
+
+.homepage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 80px;
+  width: 100%;
+}
+
 .subscription-container {
   display: flex;
   flex-direction: column;
@@ -122,65 +133,6 @@ a {
 
 .navbar .button:hover {
   background-color: #5e5e5e;
-}
-
-.movies-section {
-  margin: 80px 30px 30px 30px; 
-  padding: 20px;
-  background-color: #1f1f1f;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.movies-section h2 {
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-}
-
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-}
-
-.movie-card {
-  width: 100%;
-  height: 200px;
-  background-color: #2a2a2a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.movie-card img {
-  width: 30px;
-  height: 30px;
-  background-color: #1f1f1f;
-  padding: none;
-}
-
-.movie-card button {
-  background-color: #1f1f1f;
-  padding: 1px;
-}
-
-.movie-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.movie-card:hover::after {
-  opacity: 1;
-}
-
-.movie-card span {
-  color: #ffffff;
-  font-size: 1.2rem;
-  z-index: 1;
 }
 
 .credit-card {

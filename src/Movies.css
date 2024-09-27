@@ -1,0 +1,57 @@
+.movies-list {
+  display: flex;
+  flex-wrap: wrap; /* Ensures that items wrap onto the next line */
+  gap: 16px; /* Adds space between the cards */
+  padding: 0;
+  margin: 25px;
+  list-style-type: none; /* Removes the default list styles */
+}
+
+.movies-grid p {
+	font-size: 1rem;
+	text-align: left;
+	margin-top: 25px;
+	margin: 31px;
+  }
+  
+
+.movies-card {
+  display: flex;
+  flex-direction: column; /* Stack content vertically: title, image, rating */
+  align-items: center;
+  justify-content: space-between;
+  width: 180px; /* Sets a fixed width for each card */
+  padding: 16px;
+  border-radius: 12px;
+  margin: 8px;
+  background-color: #2a2a2a;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.75);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movies-card img {
+  width: 100%; /* Ensures the image takes the full width of the card */
+  border-radius: 8px;
+}
+
+.movies-card h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.movies-card p {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.movies-card:hover {
+  transform: scale(1.05); /* Slight scaling effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.movies-card button {
+  border-color: black;
+  background-color: #2a2a2a;
+}

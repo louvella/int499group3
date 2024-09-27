@@ -1,6 +1,6 @@
-// CreditCardForm.js
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const CreditCardForm = ({ onSave }) => {
   const [cardNumber, setCardNumber] = useState('');
@@ -9,6 +9,8 @@ const CreditCardForm = ({ onSave }) => {
   const [expiryYear, setExpiryYear] = useState('');
   const [cvv, setCvv] = useState('');
   const [message, setMessage] = useState('');
+
+  const navigate = useNavigate(); // Initialize the navigate function
 
   const handleSave = async () => {
     if (!cardNumber || !nameOnCard || !expiryMonth || !expiryYear || !cvv) {
@@ -37,7 +39,8 @@ const CreditCardForm = ({ onSave }) => {
 
       onSave(creditCardInfo);
 
-      setMessage('Credit card information saved successfully!');
+      // Navigate to the /paid route
+      navigate('/paid');
     } catch (error) {
       console.error('Error hashing credit card information', error);
       setMessage('Failed to save credit card information.');
@@ -94,7 +97,7 @@ const CreditCardForm = ({ onSave }) => {
         maxLength="3"
       />
       <button className="button" onClick={handleSave}>
-        Save Credit Card Information
+        Submit Payment
       </button>
       <p>{message}</p>
     </div>
