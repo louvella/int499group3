@@ -24,15 +24,14 @@ const App = () => {
     
     setCart(storedCart);
     setIsAuthenticated(storedAuthStatus);
+    // makes sure the login status is verified when the app initially renders
     handleLogin();
   }, []);
 
   const havefetched = useRef(false);
   useEffect(() => {
-    // Fetch and store movies in localStorage
     async function fetchAndSetMovies() {
       if (!havefetched.current) {
-        // ensures the fetch only happens once (react runs twice in dev-mode)
         havefetched.current = true;
         const fetchedMovies = await fetchPopularMovies();
         setMovies(fetchedMovies);
@@ -47,11 +46,13 @@ const App = () => {
   }, [cart]);
 
   const handleLoginSuccess = () => {
+    // function to set authentication status after successful login through Google OAuth and writes isAuthenticated key to localstorage
     setIsAuthenticated(true);
     localStorage.setItem('isAuthenticated', JSON.stringify(true));
   };
 
   const handleLogin = () => {
+    // function to checks if the user is already authenticated from local storage
     const storedAuthStatus = JSON.parse(localStorage.getItem('isAuthenticated')) || false;
     if (storedAuthStatus === false){
       console.log("User is logged out")
@@ -59,6 +60,7 @@ const App = () => {
   };
 
   const handleLogout = () => {
+    // function to handle user logout and clears authentication status
     setIsAuthenticated(false);
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('creditCardInfo');
@@ -69,9 +71,9 @@ const App = () => {
   };
 
  const calculatePrice = (movie) => {
-  const averageRating = movie.vote_average.toString().replace('.', ''); // removes the decimal point from the average rating string to simulate a price
-  const firstTwoDigits = parseInt(averageRating.slice(0, 2), 10); // gets the first two digits which are trated as the cents
-  return 1 + (firstTwoDigits / 100); // $1 base plus the cents from aove to simulate a price
+  const averageRating = movie.vote_average.toString().replace('.', ''); // composes a price for each movie that's based on the numbers used for voting_average
+  const firstTwoDigits = parseInt(averageRating.slice(0, 2), 10); 
+  return 1 + (firstTwoDigits / 100); 
 };
 
 
@@ -100,7 +102,8 @@ const handleAddToCart = (movie) => {
           <Header
             cartLength={cart.length}
             isAuthenticated={isAuthenticated}
-            onLogout={handleLogout}
+            // Logout button linked to Google OAuth logout functionality
+            onLogout={handleLogout} 
           />
           <Routes>
 
@@ -109,7 +112,7 @@ const handleAddToCart = (movie) => {
               element={<GoogleLogin onLoginSuccess={handleLoginSuccess} />}
             />
             
-            {/* Wrap routes that need authentication with PrivateRoute */}
+            {/* all routes that need authentication are wrapped with PrivateRoute */}
             <Route
               path="/"
               element={
@@ -167,6 +170,7 @@ const handleAddToCart = (movie) => {
 const Root = () => {
   const [loaded, setLoaded] = useState(false)
   return (
+    // Code that wraps app with GoogleOAuthProvider - google oAuth functionality
     <GoogleOAuthProvider clientId="76771103106-4kgp7eu5vnhnrvqp1ig5pqktjm7j3dsa.apps.googleusercontent.com" onScriptLoadSuccess={() => setLoaded(true)}>
       {loaded && <App />}
     </GoogleOAuthProvider>

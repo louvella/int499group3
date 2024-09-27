@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+//imported the bcrypt library
 import bcrypt from 'bcryptjs';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
@@ -19,15 +20,15 @@ const CreditCardForm = ({ onSave }) => {
     }
 
     try {
-      // Hash the data
+      // hashes the data
       const hashedCardNumber = await bcrypt.hash(cardNumber, 10);
       const hashedNameOnCard = await bcrypt.hash(nameOnCard, 10);
       const hashedExpiryMonth = await bcrypt.hash(expiryMonth, 10);
       const hashedExpiryYear = await bcrypt.hash(expiryYear, 10);
       const hashedCvv = await bcrypt.hash(cvv, 10);
 
-      // Create an object to store the hashed data
-            const creditCardInfo = {
+      // creates an object to store the hashed data
+      const creditCardInfo = {
         hashedCardNumber,
         hashedNameOnCard,
         hashedExpiryMonth,
@@ -35,11 +36,11 @@ const CreditCardForm = ({ onSave }) => {
         hashedCvv,
       };
 
-      // Call the parent function to save the hashed data
+      // calls the parent function to save the hashed data
 
       onSave(creditCardInfo);
 
-      // Navigate to the /paid route
+      // navigates to the paid route unless there's an error
       navigate('/paid');
     } catch (error) {
       console.error('Error hashing credit card information', error);
