@@ -36,6 +36,16 @@ a {
   width: 100%;
 }
 
+.homepage p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 80px;
+  width: 100%;
+}
+
 .subscription-container {
   display: flex;
   flex-direction: column;
